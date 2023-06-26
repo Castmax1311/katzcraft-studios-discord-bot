@@ -1,1 +1,1 @@
-# Katzcraft Studios Discord Bot
+# Katzcraft Studios Discord Bot v1
