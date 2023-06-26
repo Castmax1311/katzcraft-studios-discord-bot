@@ -1,1 +1,1 @@
-# katzcraft-studios-discord-bot
+# Katzcraft Studios Discord Bot
