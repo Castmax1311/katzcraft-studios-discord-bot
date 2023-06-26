@@ -35,4 +35,4 @@ async def progress(ctx):
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
-bot.run("MTAxNDk5NTQzNTQ4MTQ4NTM0Mg.GZhr8F.yCDwGFamjntqxdfQsYpnV9kq_YoVE3WnufZJrc")
+bot.run("TOKEN")
