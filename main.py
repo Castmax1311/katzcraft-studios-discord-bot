@@ -65,4 +65,14 @@ async def stats(ctx, member: discord.Member):
     embed.add_field(name="Badges", value=badge_str, inline=False)
     await ctx.respond(embed=embed)
 
+@bot.slash_command(description="A dice from 1-6")
+async def dice(ctx):
+    number = random.randint(1, 6)
+    username = ctx.author.display_name
+    embed = discord.Embed(title="Dice", description=" ", color=0x00ff59)
+    embed.add_field(name=" ", value=" ", inline=False)
+    embed.add_field(name=f"@{username} rolled a:", value=f"{number}", inline=True)
+    embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
+    await ctx.respond(embed=embed)
+
 bot.run("TOKEN")
