@@ -1,5 +1,6 @@
 import discord
 from discord.commands import Option
+import random
 
 intents = discord.Intents.default()
 
