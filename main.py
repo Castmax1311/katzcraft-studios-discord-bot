@@ -1,5 +1,4 @@
 import discord
-from discord.commands import Option
 import random
 
 intents = discord.Intents.default()
@@ -13,13 +12,16 @@ bot = discord.Bot(
 @bot.event
 async def on_ready():
     await bot.change_presence(status=discord.Status.idle, activity=discord.Game('/help'))
-    print(f"{bot.user} ist online")
+    print(f"{bot.user} is online")
 
 @bot.slash_command(description="View all commands")
 async def help(ctx):
     embed = discord.Embed(title="Help", description="The bot is currently under development", color=0x0008ff)
+    embed.add_field(name="Play a game:", value="`/games`", inline=False)
+    embed.add_field(name="Report bugs / errors here:", value="`/bugreport`", inline=False)
     embed.add_field(name="Look at progress & goals:", value="`/progress`", inline=False)
-    embed.add_field(name="Check out the code on GitHub:", value="`/viewcode`", inline=True)
+    embed.add_field(name="Check out the code on GitHub:", value="`/viewcode`", inline=False)
+    embed.add_field(name="Check out our website:", value="`/website`", inline=False)
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
@@ -42,7 +44,7 @@ async def website(ctx):
 @bot.slash_command(description="Look at the progress")
 async def progress(ctx):
     embed = discord.Embed(title="Progress", description="View the progress", color=0xff8800)
-    embed.add_field(name="Add normal commands:", value="15%", inline=False)
+    embed.add_field(name="Add normal commands:", value="20%", inline=False)
     embed.add_field(name="Level system:", value="0%", inline=True)
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
@@ -64,6 +66,13 @@ async def stats(ctx, member: discord.Member):
     badges = member.public_flags.all()
     badge_str = ', '.join([str(badge[0]).replace("_", " ").title() for badge in badges])
     embed.add_field(name="Badges", value=badge_str, inline=False)
+    await ctx.respond(embed=embed)
+
+@bot.slash_command(description="A dice from 1-6")
+async def games(ctx):
+    embed = discord.Embed(title="Game list", description="Currently not many games are available", color=0x00ff59)
+    embed.add_field(name="Dice from 1-6:", value="`/dice`", inline=False)
+    embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
 @bot.slash_command(description="A dice from 1-6")
