@@ -1,5 +1,6 @@
 # Katzcraft Studios Discord Bot v.1.0.3
 Check out the new Discord Bot from Katzcraft Studios now! It is just in development and therefore not equipped with many features
+
 Feel free to join our Discord server: https://discord.gg/ekCHh2Kfkn
 
 
