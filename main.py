@@ -1,5 +1,6 @@
 import discord
 import random
+import json
 
 intents = discord.Intents.default()
 
@@ -7,6 +8,8 @@ bot = discord.Bot(
     intents=intents,
     debug_guilds=[]
 )
+version = '1.0.4'
+token = json.load(open("./Json/config.json"))["token"]
 
 
 @bot.event
@@ -53,6 +56,7 @@ async def progress(ctx):
 async def viewcode(ctx):
     embed = discord.Embed(title="Here you can see my code:", color=0x414cec)
     embed.add_field(name="https://github.com/Castmax1311/katzcraft-studios-discord-bot", value=" ", inline=False)
+    embed.add_field(name=f"I'm on version {version}", value=" ", inline=False)
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
@@ -85,4 +89,4 @@ async def dice(ctx):
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
-bot.run("TOKEN")
+bot.run(token)
