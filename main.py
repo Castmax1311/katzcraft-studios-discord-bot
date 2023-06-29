@@ -8,13 +8,13 @@ bot = discord.Bot(
     intents=intents,
     debug_guilds=[]
 )
-version = '1.0.4'
+version = '1.0.5'
 token = json.load(open("./Json/config.json"))["token"]
 
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=discord.Status.idle, activity=discord.Game('/help'))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game('/help'))
     print(f"{bot.user} is online")
 
 @bot.slash_command(description="View all commands")
@@ -62,7 +62,7 @@ async def viewcode(ctx):
 
 @bot.slash_command(description="Look at the statisics of users")
 async def stats(ctx, member: discord.Member):
-    embed=discord.Embed(title="User statistics", color=0x00ffd5)
+    embed = discord.Embed(title="User statistics", color=0x00ffd5)
     embed.set_thumbnail(url=member.avatar.url)
     embed.addield(name="Username", value=member.name, inline=False)
     embed.add_field(name="Joined Discord on", value=member.created_at.strftime("%d.%m.%Y %H:%M:%S"), inline=False)
@@ -84,7 +84,6 @@ async def dice(ctx):
     number = random.randint(1, 6)
     username = ctx.author.display_name
     embed = discord.Embed(title="Dice", description=" ", color=0x00ff59)
-    embed.add_field(name=" ", value=" ", inline=False)
     embed.add_field(name=f"@{username} rolled a:", value=f"{number}", inline=True)
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
