@@ -8,7 +8,7 @@ bot = discord.Bot(
     intents=intents,
     debug_guilds=[]
 )
-version = '1.0.5'
+version = '1.0.6'
 token = json.load(open("./Json/config.json"))["token"]
 
 
@@ -31,9 +31,9 @@ async def help(ctx):
 @bot.slash_command(description="If you find a bug or error, you can report it here")
 async def bugreport(ctx):
     embed = discord.Embed(title="Oh. You found a bug or an error?", color=0xff0000)
-    embed.add_field(name="Please report it to support-forum and it will be taken care of as soon as possible.",
+    embed.add_field(name="Please report the issue on GitHub and it will be fixed as soon as possible.",
                     value="Thank you!", inline=False)
-    embed.add_field(name="To the support forum:", value="https://discord.gg/eUbWpfJ4CZ", inline=False)
+    embed.add_field(name="To GitHub issues:", value="https://github.com/Castmax1311/katzcraft-studios-discord-bot/issues", inline=False)
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
@@ -72,7 +72,7 @@ async def stats(ctx, member: discord.Member):
     embed.add_field(name="Badges", value=badge_str, inline=False)
     await ctx.respond(embed=embed)
 
-@bot.slash_command(description="A dice from 1-6")
+@bot.slash_command(description="Game list")
 async def games(ctx):
     embed = discord.Embed(title="Game list", description="Currently not many games are available", color=0x00ff59)
     embed.add_field(name="Dice from 1-6:", value="`/dice`", inline=False)
