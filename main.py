@@ -1,5 +1,6 @@
 #This code is from Castmax1311
 #Github repository: https://github.com/Castmax1311/katzcraft-studios-discord-bot
+#Discord Server: https://discord.gg/ekCHh2Kfkn
 
 import discord
 import random
