@@ -1,3 +1,6 @@
+#This code is from Castmax1311
+#Github repository: https://github.com/Castmax1311/katzcraft-studios-discord-bot
+
 import discord
 import random
 import json
@@ -10,7 +13,6 @@ bot = discord.Bot(
 )
 version = '1.0.6'
 token = json.load(open("./Json/config.json"))["token"]
-
 
 @bot.event
 async def on_ready():
@@ -47,8 +49,9 @@ async def website(ctx):
 @bot.slash_command(description="Look at the progress")
 async def progress(ctx):
     embed = discord.Embed(title="Progress", description="View the progress", color=0xff8800)
-    embed.add_field(name="Add normal commands:", value="20%", inline=False)
-    embed.add_field(name="Level system:", value="0%", inline=True)
+    embed.add_field(name="Add normal commands:", value="30%", inline=False)
+    embed.add_field(name="Level system:", value="0%", inline=False)
+    embed.add_field(name="Economy system:", value="**Not yet planned**", inline=False)
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
@@ -60,11 +63,11 @@ async def viewcode(ctx):
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
 
-@bot.slash_command(description="Look at the statisics of users")
+@bot.slash_command(description="Look at the stats of users")
 async def stats(ctx, member: discord.Member):
-    embed = discord.Embed(title="User statistics", color=0x00ffd5)
+    embed = discord.Embed(title="Stats of User:", color=0x00ffd5)
     embed.set_thumbnail(url=member.avatar.url)
-    embed.addield(name="Username", value=member.name, inline=False)
+    embed.add_field(name="Username", value=member.name, inline=False)
     embed.add_field(name="Joined Discord on", value=member.created_at.strftime("%d.%m.%Y %H:%M:%S"), inline=False)
     embed.add_field(name="Joined Server on", value=member.joined_at.strftime("%d.%m.%Y %H:%M:%S"), inline=False)
     badges = member.public_flags.all()
@@ -87,5 +90,6 @@ async def dice(ctx):
     embed.add_field(name=f"@{username} rolled a:", value=f"{number}", inline=True)
     embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
     await ctx.respond(embed=embed)
+
 
 bot.run(token)
