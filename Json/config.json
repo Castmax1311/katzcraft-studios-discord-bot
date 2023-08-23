@@ -1,3 +1,4 @@
 {
-  "token": "TOKEN" #Add your token here
+  "token": "YOUR TOKEN",
+  "expOnMessage": 10
 }
