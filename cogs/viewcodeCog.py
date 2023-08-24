@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.commands import slash_command
 
-version = '1.1'
+version = '1.2'
 class ViewcodeCog(commands.Cog):
 
     def __init__(self, bot):

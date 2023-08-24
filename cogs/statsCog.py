@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord.commands import slash_command, Option
 from utils.LevelManager import LevelManager
+from utils.MoneyManager import MoneyManager
 
 
 class StatsCog(commands.Cog):
@@ -16,14 +17,19 @@ class StatsCog(commands.Cog):
         if member is None:
             member = ctx.author
 
-        levelManager = LevelManager(ctx.guild.id, "./Json/levels.json")
+        levelManager = LevelManager(ctx.guild.id)
 
         level = levelManager.getLevel(member.id)
+
+        moneyManager = MoneyManager()
+
+        money = moneyManager.getMoney(member.id)
 
         embed = discord.Embed(title="Stats of User:", color=0x00ffd5)
         embed.set_thumbnail(url=member.avatar.url)
         embed.add_field(name="Username", value=member.name, inline=False)
         embed.add_field(name="Level", value=str(level) + f" ({levelManager.getExpToLevelup(member.id)} to level-up)", inline=False)
+        embed.add_field(name="Money", value=f" {money}", inline=False)
         embed.add_field(name="Joined Discord on", value=member.created_at.strftime("%d.%m.%Y %H:%M:%S"), inline=False)
         embed.add_field(name="Joined Server on", value=member.joined_at.strftime("%d.%m.%Y %H:%M:%S"), inline=False)
         badges = member.public_flags.all()

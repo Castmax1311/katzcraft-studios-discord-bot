@@ -13,7 +13,7 @@ class ProgressCog(commands.Cog):
     async def progress(self, ctx):
         embed = discord.Embed(title="Progress", description="View the progress", color=0xff8800)
         embed.add_field(name="Add normal commands:", value="35%", inline=False)
-        embed.add_field(name="Economy system:", value="0%", inline=False)
+        embed.add_field(name="Economy system:", value="40%", inline=False)
         embed.add_field(name="Leveling system:", value="100%", inline=False)
         embed.add_field(name="Add moderation commands:", value="40%", inline=False)
         embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")

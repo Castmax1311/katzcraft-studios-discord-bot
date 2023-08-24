@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
-from discord.commands import slash_command
+from discord.commands import slash_command, Option
+from utils.MoneyManager import MoneyManager
+
 import random
 
 class GamesCog(commands.Cog):
@@ -26,11 +28,30 @@ class GamesCog(commands.Cog):
         embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
         await ctx.respond(embed=embed)
 
-    @slash_command(description="Play heads or tails", guild_ids=[798881392435134464, 906164029523890217])
-    async def headornumber(self, ctx):
-        result = "Head" if random.choice([True, False]) else "Tail"
-        embed = discord.Embed(color=0x00ff59)
-        embed.add_field(name="The result is:", value=f"{result}", inline=False)
+    @slash_command(description="Play heads or tails")
+    async def coinflip(self, ctx, choice: Option(str, description="Choose 'head' or 'tail", required=True, choices=["head", "tail"]), money: Option(int, min_value=1, required=True, description="Choose your bet")):
+        moneyManager = MoneyManager()
+
+        if choice.lower() not in ["head", "tail"]:
+            await ctx.send("Please choose 'head' or 'tail")
+            return
+
+        user_id = ctx.author.id
+        user_money = moneyManager.getMoney(user_id)
+
+        if user_money < money:
+            await ctx.send("You don't have enough money to play")
+            return
+
+        result = random.choice(["head", "tail"])
+        if choice.lower() == result:
+            moneyManager.addMoney(user_id, money)
+            embed = discord.Embed(color=0x00ff59)
+            embed.add_field(name="Result:", value="Congratulations, you have won! Your bet was doubled", inline=False)
+        else:
+            moneyManager.addMoney(user_id, -money)
+            embed = discord.Embed(color=0xff0000)
+            embed.add_field(name="Result:", value="Too bad, you have lost. Your bet is gone", inline=False)
         embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
         await ctx.respond(embed=embed)
 

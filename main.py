@@ -32,7 +32,7 @@ async def on_ready():
 async def on_message(message):
 
     author = message.author
-    levelManager = LevelManager(guildID=message.guild.id, pathToDatafile="./Json/levels.json")
+    levelManager = LevelManager(guildID=message.guild.id)
     levelBefore = levelManager.getLevel(author.id)
     levelManager.addExp(author.id, json.load(open("./Json/config.json"))["expOnMessage"])
     levelAfter = levelManager.getLevel(author.id)

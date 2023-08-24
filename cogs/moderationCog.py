@@ -10,7 +10,7 @@ class ModerationCog(commands.Cog):
 
     @slash_command(description="View the moderation commands", guild_ids=[798881392435134464, 906164029523890217])
     async def moderation(self, ctx):
-        embed = discord.Embed(title="Moderation commands", description="The bot is currently under development",
+        embed = discord.Embed(title="Moderation commands", description="",
                               color=0x0008ff)
         embed.add_field(name="Delete message from a channel:", value="`/clear`", inline=False)
         embed.add_field(name="Kick a member from the server:", value="`/kick`", inline=False)

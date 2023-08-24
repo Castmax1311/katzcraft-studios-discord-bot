@@ -6,9 +6,9 @@ import math
 
 class LevelManager:
 
-    def __init__(self, guildID, pathToDatafile):
+    def __init__(self, guildID):
         self.guildID = guildID
-        self.pathToDatafile = pathToDatafile
+        self.pathToDatafile = "./Json/levels.json"
 
     def addExp(self, targetID, amount):
         """
