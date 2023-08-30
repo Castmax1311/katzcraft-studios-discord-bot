@@ -40,7 +40,7 @@ async def on_message(message):
     if levelAfter > levelBefore:
         embed = discord.Embed(title=":tada: LEVEL UP! :tada: ", description="", color=0x00ffd5)
         embed.add_field(name=f"{author.name}, you just advanced to level {levelAfter}!", value="", inline=False)
-        embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
+        embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311 & enderkatze")
         await message.channel.send(embed=embed)
 
 

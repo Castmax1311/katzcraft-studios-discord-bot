@@ -1,7 +1,6 @@
 # Code by EnderKatze
 
 import json
-import math
 
 
 class MoneyManager:
