@@ -1,6 +1,7 @@
 import discord
+from discord import Option
 from discord.ext import commands
-from discord.commands import slash_command, Option
+from discord.commands import slash_command
 from utils.MoneyManager import MoneyManager
 import time
 import json
@@ -40,7 +41,7 @@ class MoneyCog(commands.Cog):
         if time_since_last_claim < daily_interval:
             time_left = daily_interval - time_since_last_claim
             embed = discord.Embed(title="Daily reward", description=f"You've already claimed your daily reward. Please wait {int(time_left // 3600)} hours before claiming again.", color=0xff0000)
-            embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
+            embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311 & enderkatze")
             await ctx.respond(embed=embed)
             return
 
@@ -52,8 +53,38 @@ class MoneyCog(commands.Cog):
         self.save_data()
 
         embed = discord.Embed(title="Daily reward", description="Congratulations! You've claimed your daily reward of 100 money", color=0x00ff59)
-        embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311")
+        embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311 & enderkatze")
         await ctx.respond(embed=embed)
+
+    @slash_command(description="Give money to a member")
+    async def pay(self, ctx,
+                  user: Option(discord.Member, required=True),
+                  amount: Option(int, required=True, min_value=1)):
+
+        if user.id is ctx.author.id:
+            embed = discord.Embed(title="Error", color=0xff0000)
+            embed.add_field(name="Can't pay yourself money", value=" ", inline=False)
+            embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311 & enderkatze")
+            await ctx.respond(embed=embed)
+
+        else:
+            moneyManager = MoneyManager()
+
+            if moneyManager.getMoney(ctx.author.id) >= amount:
+
+                moneyManager.addMoney(user.id, amount)
+                moneyManager.addMoney(ctx.author.id, -amount)
+
+                embed = discord.Embed(title="", color=0x414cec)
+                embed.add_field(name=f"You paid {amount} KatzCoins to {user.name}", value=" ", inline=False)
+                embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311 & enderkatze")
+                await ctx.respond(embed=embed)
+
+            else:
+                embed = discord.Embed(title="Error", color=0xff0000)
+                embed.add_field(name="You don't have enough money!", value=" ", inline=False)
+                embed.set_footer(text="Discord Bot by Katzcraft Studios - castmax1311 & enderkatze")
+                await ctx.respond(embed=embed)
 
 def setup(bot):
     bot.add_cog(MoneyCog(bot))
